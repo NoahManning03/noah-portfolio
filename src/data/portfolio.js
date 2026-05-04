@@ -3,6 +3,7 @@ export const NAV_LINKS = [
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
+  { id: "offers", label: "Offers" },
   { id: "certifications", label: "Certifications" },
   { id: "contact", label: "Contact" },
 ];
@@ -134,17 +135,22 @@ export const EXPERIENCE = [
 export const PROJECTS = [
   {
     name: "EnvyAI",
-    tagline: "AI Skincare iOS App",
+    tagline: "AI Skincare Analysis iOS App",
     stack: [
       "SwiftUI",
       "Firebase",
       "Anthropic Claude Vision API",
       "RevenueCat",
+      "Vercel",
     ],
     meta: "Solo Developer · 2026 · Live on App Store",
     bullets: [
-      "Shipped a full-stack iOS app to the App Store with AI-powered skin analysis, a custom scoring engine, three AI features (face scan, shade matching, skin consultant), and a Free/Pro ($4.99)/Premium ($7.99) subscription system.",
-      "Architected Firebase Cloud Functions with tier-based access control, daily usage limits, and real-time Firestore sync between subscription state and user entitlements.",
+      "Built and shipped a full-stack iOS app from zero to App Store using SwiftUI, Firebase, and Claude Vision API — analyzes skin from photos and generates personalized scores, routines, and product recommendations.",
+      "Engineered a custom AI scoring system with structured prompt architecture, penalty/bonus deduction tables, and server-side score clamping to produce calibrated skin assessments across a 2.0–9.8 scale.",
+      "Implemented three distinct AI-powered features — face/body scan analysis, foundation shade matching, and a conversational skin consultant — each with dedicated Firebase Cloud Functions, daily usage limits, and tier-based access control.",
+      "Built a complete subscription monetization system via RevenueCat with Free, Pro ($4.99/mo), and Premium ($7.99/mo) tiers enforced on client and server, integrated with App Store Connect IAP review flow.",
+      "Navigated the full App Store review process through multiple rejection cycles, resolving guideline violations across ATT compliance, privacy disclosures, location permission UX, subscription metadata, and third-party AI data consent.",
+      "Architected a real-time Firestore data model tracking scan history, score trends, streak data, and subscription state with bidirectional sync between RevenueCat entitlements and Firestore via webhook.",
     ],
   },
   {
@@ -162,6 +168,21 @@ export const PROJECTS = [
       "Built a full-stack time banking web app for a nonprofit through an agile consulting engagement, designing a 15+ table relational database and integrating Claude AI for service request matching.",
       "Delivered across multiple sprints with direct client demos and real-time feedback incorporation.",
     ],
+  },
+];
+
+export const OFFERS = [
+  {
+    company: "Deloitte & Touche LLP",
+    role: "Analyst, Cyber — Government & Public Services",
+    location: "Arlington/Rosslyn, VA",
+    logo: "Deloitte",
+  },
+  {
+    company: "Ernst & Young (EY)",
+    role: "Digital Risk Consultant",
+    location: "Richmond, VA",
+    logo: "EY",
   },
 ];
 
