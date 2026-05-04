@@ -30,32 +30,13 @@ export default function Projects() {
           <motion.article
             key={p.name}
             variants={item}
-            className="card card-hover group flex flex-col p-7"
+            className="card card-hover flex flex-col p-7"
           >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-xl font-semibold text-white">
-                  {p.name}
-                </h3>
-                <p className="mt-1 text-sm text-accent">{p.tagline}</p>
-              </div>
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-bg-border text-zinc-400 transition-colors group-hover:border-accent/50 group-hover:text-white">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M7 17L17 7M9 7h8v8"
-                  />
-                </svg>
-              </span>
+            <div>
+              <h3 className="text-xl font-semibold text-white">
+                {p.name}
+              </h3>
+              <p className="mt-1 text-sm text-accent">{p.tagline}</p>
             </div>
 
             <p className="mt-3 text-xs uppercase tracking-[0.14em] text-zinc-500">

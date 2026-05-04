@@ -11,7 +11,7 @@ export const NAV_LINKS = [
 export const HERO = {
   name: "Noah Manning",
   typingPhrase:
-    "Digital Risk Consultant @ EY · iOS Developer · CS Student",
+    "Digital Risk Consultant @ EY · iOS Developer · CIS Student",
   paragraph:
     "I build things — from enterprise risk frameworks at EY to AI-powered iOS apps shipped to the App Store. Currently finishing my B.B.A. in CIS at James Madison University.",
 };
@@ -165,8 +165,12 @@ export const PROJECTS = [
     ],
     meta: "Full Stack Developer · Shenandoah Consulting",
     bullets: [
-      "Built a full-stack time banking web app for a nonprofit through an agile consulting engagement, designing a 15+ table relational database and integrating Claude AI for service request matching.",
-      "Delivered across multiple sprints with direct client demos and real-time feedback incorporation.",
+      "Built a full-stack time banking web app for a nonprofit through a client-facing consulting engagement, leveraging AI integration to accelerate development and differentiate from competing teams.",
+      "Implemented using ASP.NET Core with Razor Pages, SQL Server, and Entity Framework Core — designed and built the full relational database schema from scratch.",
+      "Integrated Claude AI (claude-sonnet-4-20250514) to power intelligent service request matching and category navigation within the platform.",
+      "Designed a 15+ table relational database covering custom identity management, time transaction tracking, credential verification, and organization membership systems.",
+      "Collaborated directly with a nonprofit client through an agile sprint-based process, presenting demos and incorporating real-time feedback across multiple sprints.",
+      "Contributed to migration planning documentation outlining the transition from the quick-hit system to the full production platform, including flat-file to relational database mapping strategy.",
     ],
   },
 ];
@@ -183,6 +187,7 @@ export const OFFERS = [
     role: "Digital Risk Consultant",
     location: "Richmond, VA",
     logo: "EY",
+    accepted: true,
   },
 ];
 
