@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { HERO } from "../data/portfolio";
+import headshotImg from "../assets/headshot.jpg";
 
 function useTypewriter(text, speed = 45, startDelay = 350) {
   const [output, setOutput] = useState("");
@@ -58,7 +59,7 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(800px 500px at 15% 10%, rgba(99, 102, 241, 0.10), transparent 60%), radial-gradient(700px 400px at 90% 30%, rgba(99, 102, 241, 0.06), transparent 60%)",
+            "radial-gradient(800px 500px at 15% 10%, rgba(47, 129, 247, 0.08), transparent 60%), radial-gradient(700px 400px at 90% 30%, rgba(47, 129, 247, 0.05), transparent 60%)",
         }}
       />
       <div
@@ -75,90 +76,109 @@ export default function Hero() {
         }}
       />
 
-      <div className="container-page">
-        <motion.p
-          custom={0}
-          variants={fade}
-          initial="hidden"
-          animate="visible"
-          className="section-eyebrow"
-        >
-          Portfolio
-        </motion.p>
+      <div className="container-page grid lg:grid-cols-2 gap-12 items-center w-full">
+        <div>
+          <motion.p
+            custom={0}
+            variants={fade}
+            initial="hidden"
+            animate="visible"
+            className="section-eyebrow"
+          >
+            Portfolio
+          </motion.p>
 
-        <motion.h1
-          custom={1}
-          variants={fade}
-          initial="hidden"
-          animate="visible"
-          className="mt-6 text-5xl font-bold tracking-tightish text-white sm:text-6xl md:text-7xl lg:text-8xl"
-        >
-          {HERO.name}
-        </motion.h1>
+          <motion.h1
+            custom={1}
+            variants={fade}
+            initial="hidden"
+            animate="visible"
+            className="mt-6 text-5xl font-bold tracking-tightish text-white sm:text-6xl md:text-7xl lg:text-7xl"
+          >
+            {HERO.name}
+          </motion.h1>
+
+          <motion.div
+            custom={2}
+            variants={fade}
+            initial="hidden"
+            animate="visible"
+            className="mt-6 min-h-[2.25rem] text-lg sm:text-xl md:text-2xl text-zinc-300"
+          >
+            <span>{output}</span>
+            <span
+              aria-hidden
+              className={`ml-1 inline-block w-[2px] translate-y-[2px] bg-accent ${
+                done ? "h-5 sm:h-6" : "h-5 sm:h-6 animate-blink-caret"
+              }`}
+              style={{ animation: "blink 1s step-end infinite" }}
+            />
+          </motion.div>
+
+          <motion.p
+            custom={3}
+            variants={fade}
+            initial="hidden"
+            animate="visible"
+            className="mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-zinc-400"
+          >
+            {HERO.paragraph}
+          </motion.p>
+
+          <motion.div
+            custom={4}
+            variants={fade}
+            initial="hidden"
+            animate="visible"
+            className="mt-10 flex flex-wrap items-center gap-3"
+          >
+            <a
+              href="#projects"
+              onClick={scrollTo("projects")}
+              className="btn-primary"
+            >
+              View My Work
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 12h14M13 5l7 7-7 7"
+                />
+              </svg>
+            </a>
+            <a
+              href="#contact"
+              onClick={scrollTo("contact")}
+              className="btn-secondary"
+            >
+              Contact Me
+            </a>
+          </motion.div>
+        </div>
 
         <motion.div
           custom={2}
           variants={fade}
           initial="hidden"
           animate="visible"
-          className="mt-6 min-h-[2.25rem] text-lg sm:text-xl md:text-2xl text-zinc-300"
+          className="hidden lg:flex items-center justify-center"
         >
-          <span>{output}</span>
-          <span
-            aria-hidden
-            className={`ml-1 inline-block w-[2px] translate-y-[2px] bg-accent ${
-              done ? "h-5 sm:h-6" : "h-5 sm:h-6 animate-blink-caret"
-            }`}
-            style={{ animation: "blink 1s step-end infinite" }}
-          />
-        </motion.div>
-
-        <motion.p
-          custom={3}
-          variants={fade}
-          initial="hidden"
-          animate="visible"
-          className="mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-zinc-400"
-        >
-          {HERO.paragraph}
-        </motion.p>
-
-        <motion.div
-          custom={4}
-          variants={fade}
-          initial="hidden"
-          animate="visible"
-          className="mt-10 flex flex-wrap items-center gap-3"
-        >
-          <a
-            href="#projects"
-            onClick={scrollTo("projects")}
-            className="btn-primary"
-          >
-            View My Work
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5 12h14M13 5l7 7-7 7"
-              />
-            </svg>
-          </a>
-          <a
-            href="#contact"
-            onClick={scrollTo("contact")}
-            className="btn-secondary"
-          >
-            Contact Me
-          </a>
+          <div className="relative">
+            <div className="absolute inset-0 rounded-2xl bg-accent/10 blur-3xl scale-110" />
+            <img
+              src={headshotImg}
+              alt="Noah Manning"
+              className="relative rounded-2xl w-80 xl:w-96 object-cover shadow-glow border border-bg-border"
+            />
+          </div>
         </motion.div>
       </div>
 

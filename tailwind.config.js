@@ -5,18 +5,18 @@ export default {
     extend: {
       colors: {
         bg: {
-          DEFAULT: "#0a0a0a",
-          soft: "#111113",
-          card: "#121215",
-          border: "#1f1f23",
+          DEFAULT: "#0d1117",
+          soft: "#161b22",
+          card: "#161b22",
+          border: "#21262d",
         },
         accent: {
-          DEFAULT: "#6366f1",
-          hover: "#818cf8",
-          soft: "rgba(99, 102, 241, 0.12)",
-          ring: "rgba(99, 102, 241, 0.35)",
+          DEFAULT: "#2f81f7",
+          hover: "#58a6ff",
+          soft: "rgba(47, 129, 247, 0.12)",
+          ring: "rgba(47, 129, 247, 0.35)",
         },
-        muted: "#a1a1aa",
+        muted: "#8b949e",
       },
       fontFamily: {
         sans: [
@@ -33,7 +33,7 @@ export default {
         tightish: "-0.02em",
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(99, 102, 241, 0.25), 0 10px 40px -10px rgba(99, 102, 241, 0.25)",
+        glow: "0 0 0 1px rgba(47, 129, 247, 0.25), 0 10px 40px -10px rgba(47, 129, 247, 0.30)",
       },
       animation: {
         "blink-caret": "blink 1s step-end infinite",

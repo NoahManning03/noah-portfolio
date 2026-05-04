@@ -222,6 +222,6 @@ export const CERTIFICATIONS = [
 export const CONTACT = {
   blurb: "Let's connect — I'm always open to new opportunities.",
   email: "manningjnoah@gmail.com",
-  linkedin: "#",
-  github: "#",
+  linkedin: "https://www.linkedin.com/in/noah-manning03/",
+  github: "https://github.com/NoahManning03",
 };
