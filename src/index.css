@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bg text-white font-sans antialiased;
+    background-color: #0a0a0a;
+    color: #ffffff;
+  }
+
+  ::selection {
+    background: rgba(99, 102, 241, 0.35);
+    color: #ffffff;
+  }
+
+  /* Subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1f1f23;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2a2a30;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-6 sm:px-8;
+  }
+
+  .section {
+    @apply py-24 sm:py-28;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-semibold tracking-tightish text-white;
+  }
+
+  .section-eyebrow {
+    @apply text-sm font-medium uppercase tracking-[0.18em] text-accent;
+  }
+
+  .card {
+    @apply rounded-xl border border-bg-border bg-bg-card/60 backdrop-blur-sm transition-colors duration-300;
+  }
+
+  .card-hover {
+    @apply hover:border-accent/40 hover:bg-bg-card;
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded-md border border-bg-border bg-bg-soft px-2.5 py-1 text-xs font-medium text-zinc-300;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-white hover:bg-accent-hover;
+  }
+
+  .btn-secondary {
+    @apply btn border border-bg-border bg-transparent text-white hover:border-accent/50 hover:text-white;
+  }
+
+  .nav-link {
+    @apply relative text-sm text-zinc-400 transition-colors duration-200 hover:text-white;
+  }
+
+  .nav-link-active {
+    @apply text-white;
+  }
+
+  .nav-link-active::after {
+    content: "";
+    @apply absolute -bottom-1.5 left-0 right-0 mx-auto h-px w-4 bg-accent;
+  }
+
+  .typing-caret::after {
+    content: "|";
+    @apply ml-1 inline-block text-accent;
+    animation: blink 1s step-end infinite;
+  }
+}
