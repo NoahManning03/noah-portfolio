@@ -21,7 +21,7 @@ export const ABOUT = {
   stats: [
     { value: "4×", label: "AWS Certified" },
     { value: "3.5", label: "GPA · Honors College" },
-    { value: "1", label: "App Store Shipped" },
+    { value: "2", label: "Apps Shipped" },
     { value: "Active", label: "Security Clearance Eligible" },
   ],
 };
