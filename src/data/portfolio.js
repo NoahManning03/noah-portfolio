@@ -11,13 +11,13 @@ export const NAV_LINKS = [
 export const HERO = {
   name: "Noah Manning",
   typingPhrase:
-    "Digital Risk Consultant @ EY · iOS Developer · CIS Student",
+    "Digital Risk Consultant @ EY · AI Software Engineer · iOS Developer",
   paragraph:
-    "I build things — from enterprise risk frameworks at EY to AI-powered iOS apps shipped to the App Store. Currently finishing my B.B.A. in CIS at James Madison University.",
+    "I build things — from enterprise risk frameworks at EY to AI systems and iOS apps shipped to production. B.B.A. in Computer Information Systems from James Madison University.",
 };
 
 export const ABOUT = {
-  bio: "I'm a senior at James Madison University's Honors College studying Computer Information Systems with a focus in Cybersecurity. I currently intern at Ernst & Young as a Digital Risk Consultant, where I work on SOX compliance, IT control testing, and cloud governance for enterprise clients. Outside of work I build iOS apps — my latest, EnvyAI, is a full-stack AI skincare app live on the App Store. I'm passionate about the intersection of security, cloud, and AI.",
+  bio: "I'm a 2026 graduate of James Madison University's Honors College with a B.B.A. in Computer Information Systems and a focus in Cybersecurity. I work at Ernst & Young as a Digital Risk Consultant on SOX compliance, IT control testing, and cloud governance for enterprise clients. Alongside that I ship software — most recently an engagement intelligence platform built solo on contract for a professional services firm, and EnvyAI, a full-stack AI skincare app live on the App Store. I'm drawn to the intersection of security, cloud, and AI.",
   stats: [
     { value: "4×", label: "AWS Certified" },
     { value: "3.5", label: "GPA · Honors College" },
@@ -99,8 +99,21 @@ export const SKILLS = [
 
 export const EXPERIENCE = [
   {
+    company: "KeyDelta",
+    role: "AI Software Engineer (Contract)",
+    location: "Remote",
+    dates: "June 2026 – August 2026",
+    bullets: [
+      "Sole engineer on an engagement intelligence platform, taking a professional services firm from an empty cloud subscription to a documented, deployable system under weekly review with the Managing Partner.",
+      "Replaced roughly 20 minutes of manual daily engagement reconstruction per partner with an automated briefing delivered before the workday started.",
+      "Built scheduled Python ingest across Microsoft Graph mail and calendar, meeting transcripts, and partner-reviewed summaries into a normalized, de-duplicated PostgreSQL store with full provenance.",
+      "Integrated Claude as a constrained interpretation layer — surfacing decisions, ownership, and stalling threads without generating facts, with every claim traceable to its source rows.",
+      "Delivered infrastructure as code in Bicep with CI on every push, plus 27 handoff documents and a credential-rotation runbook validated against live resource configuration.",
+    ],
+  },
+  {
     company: "Ernst & Young (EY)",
-    role: "Digital Risk Consultant Intern",
+    role: "Digital Risk Consultant",
     location: "Richmond, VA",
     dates: "June 2025 – Present",
     bullets: [
@@ -133,6 +146,29 @@ export const EXPERIENCE = [
 ];
 
 export const PROJECTS = [
+  {
+    name: "Engagement Intelligence Platform",
+    tagline: "Daily Intelligence Layer for a Professional Services Firm",
+    stack: [
+      "Python 3.11",
+      "Azure Functions",
+      "PostgreSQL",
+      "Microsoft Graph API",
+      "Claude API",
+      "Bicep",
+      "GitHub Actions",
+    ],
+    meta: "KeyDelta · Contract Engineer · 2026 · Solo Build",
+    bullets: [
+      "Partners each rebuilt the same picture every morning — digging through mail, calendar, and meeting notes to work out where an engagement stood, and arriving at different answers. Built a system that assembles that picture once, overnight, and delivers it as a briefing before anyone logs on.",
+      "Fed three input streams — mail and calendar, meeting transcripts, and partner-approved summaries — into a single PostgreSQL store, normalized and de-duplicated with provenance intact so every downstream claim traces back to a specific row.",
+      "Chose a single store over live retrieval so every user gets an identical answer in about a second rather than a minute, and no chat session is ever handed access to the underlying systems.",
+      "Constrained the Claude layer to interpretation only — themes, ownership, priority, and engagement health — so it never generates facts, making briefings auditable rather than merely plausible.",
+      "Diagnosed a duplicate-send failure where the platform's hard HTTP timeout caused gateways to retry a send that had actually succeeded; solved it with an idempotent claim keyed on date, run label, and recipient set.",
+      "Measured generated summaries against partner-approved baselines at 70–75% quality — enough to save real drafting time, not enough to ship unreviewed — and defended how that number was derived.",
+      "Ran an adversarial verification pass over the handoff documentation, diffing every written claim against source: it found 19 discrepancies, including a live credential embedded in a build artifact.",
+    ],
+  },
   {
     name: "EnvyAI",
     tagline: "AI Skincare Analysis iOS App",
@@ -173,14 +209,120 @@ export const PROJECTS = [
       "Contributed to migration planning documentation outlining the transition from the quick-hit system to the full production platform, including flat-file to relational database mapping strategy.",
     ],
   },
+  {
+    name: "Nut In My Bolts",
+    tagline: "3D Nut-Sort Puzzle Game",
+    stack: [
+      "React",
+      "TypeScript",
+      "Three.js",
+      "Zustand",
+      "Vite",
+      "Tailwind CSS",
+    ],
+    meta: "Solo Developer · 2026 · Live · PWA",
+    link: "https://nut-in-my-bolts.vercel.app",
+    bullets: [
+      "Built a 3D nut-sort puzzle — lift runs of same-colored hex nuts off threaded bolts and screw them onto matching stacks until every color is sorted — with Three.js handling the scene and React confined to the UI layer.",
+      "Generated every level deterministically from its level number and proved it solvable with a built-in DFS solver before dealing it, so no player can ever be handed an impossible board.",
+      "Tuned a difficulty curve from 4 colors across 6 bolts up to 10 colors across 12, dropping to a single spare bolt from level 12 onward.",
+      "Kept the engine and React decoupled behind a single Zustand store as the only bridge between them, and synthesized all sound effects procedurally through WebAudio instead of shipping audio files.",
+      "Shipped as an installable PWA — web manifest with maskable icons, iOS add-to-home-screen running fullscreen standalone, and Open Graph tags for link previews.",
+    ],
+  },
+  {
+    name: "TERRA",
+    tagline: "Street-View World Guessing Game",
+    stack: [
+      "JavaScript",
+      "Leaflet",
+      "Three.js",
+      "Google Street View",
+      "Esri Imagery",
+      "Vercel",
+    ],
+    meta: "Solo Developer · 2026 · Live",
+    link: "https://terra-rose.vercel.app",
+    bullets: [
+      "Built a geography game that drops you somewhere on Earth in a real street-view panorama and asks where you are — five rounds a game, no account, free to play.",
+      "Scored guesses by haversine distance from true coordinates on an interactive Leaflet map with Esri satellite imagery, persisting scores and streaks in localStorage.",
+      "Added seeded challenge links so two players get an identical round sequence from the same URL, making head-to-head scores directly comparable.",
+      "Shipped the entire game as a single self-contained HTML file — no build step, no framework, no backend.",
+    ],
+  },
+  {
+    name: "Music Geo",
+    tagline: "Guess the Music Map",
+    stack: [
+      "JavaScript",
+      "D3.js",
+      "TopoJSON",
+      "Stripe",
+      "Vercel Serverless",
+      "Node.js",
+    ],
+    meta: "Solo Developer · 2026 · Live at music-geo.app",
+    link: "https://music-geo.app",
+    bullets: [
+      "Built a mobile-first globe game where players tap the country or U.S. state tied to an artist's birthplace, a genre's origin, or a festival's home — 390+ questions on a D3 and TopoJSON world map.",
+      "Shipped a full subscription business on Stripe with email magic-link auth and signed session tokens, re-verified on every load so cancellations and refunds actually revoke access.",
+      "Designed the entitlement check to fail open during a Stripe or network outage — a paying user keeps their last-known state instead of getting locked out mid-outage.",
+    ],
+  },
+  {
+    name: "Bible Geo",
+    tagline: "Where in the Word?",
+    stack: [
+      "JavaScript",
+      "Interactive Mapping",
+      "Offline-First",
+      "Vercel",
+    ],
+    meta: "Solo Developer · 2026 · Live",
+    link: "https://bible-geo.vercel.app",
+    bullets: [
+      "Built a biblical geography game spanning 162 questions across eight historical eras, each rendered on an era-accurate map showing only the cities, names, and borders that existed at that time.",
+      "Scored answers by pin precision down to the village level, then taught the result — scripture reference, modern-day location, and historical context on every reveal.",
+      "Synthesized the underlying place data from 70+ scholarly sources; runs fully offline and never repeats a question until the set is exhausted.",
+    ],
+  },
+  {
+    name: "StateCraft",
+    tagline: "U.S. Geography Trainer",
+    stack: [
+      "JavaScript",
+      "SVG Mapping",
+      "Albers USA Projection",
+      "Vercel",
+    ],
+    meta: "Solo Developer · 2026 · Live",
+    link: "https://s3xy-states.vercel.app",
+    bullets: [
+      "Built a keyboard-first trainer for all 50 states and capitals with four drill modes — type the map, type the capitals, find a named state against the clock, and match capitals against neighboring-state decoys.",
+      "Rendered the map in an Albers USA projection with instant per-answer feedback, locking correct spellings in color as they're typed.",
+      "Runs entirely in the browser with no sign-in and no backend.",
+    ],
+  },
 ];
 
 export const OFFERS = [
+  {
+    company: "KeyDelta",
+    role: "AI Software Engineer",
+    location: "Remote",
+    logo: "KeyDelta",
+  },
   {
     company: "Deloitte & Touche LLP",
     role: "Analyst, Cyber — Government & Public Services",
     location: "Arlington/Rosslyn, VA",
     logo: "Deloitte",
+  },
+  {
+    company: "Coalfire",
+    role: "Security Consultant",
+    location: "Remote",
+    logo: "Coalfire",
   },
   {
     company: "Ernst & Young (EY)",

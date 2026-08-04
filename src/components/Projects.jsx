@@ -33,9 +33,38 @@ export default function Projects() {
             className="card card-hover flex flex-col p-7"
           >
             <div>
-              <h3 className="text-xl font-semibold text-white">
-                {p.name}
-              </h3>
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-xl font-semibold text-white">
+                  {p.name}
+                </h3>
+                {p.link && (
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 inline-flex items-center gap-1 rounded-full border border-accent/30 bg-accent-soft px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-accent transition hover:border-accent/60"
+                  >
+                    Live
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="11"
+                      height="11"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden
+                    >
+                      <path d="M7 17L17 7M17 7H8M17 7v9" />
+                    </svg>
+                    <span className="sr-only">
+                      Open {p.name} in a new tab
+                    </span>
+                  </a>
+                )}
+              </div>
               <p className="mt-1 text-sm text-accent">{p.tagline}</p>
             </div>
 
