@@ -8,10 +8,11 @@ const stagger = {
 };
 
 const item = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 18, scale: 0.96 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
   },
 };
@@ -63,11 +64,7 @@ function AcceptedBadge() {
 
 export default function Offers() {
   return (
-    <Section
-      id="offers"
-      eyebrow="Recognition"
-      title="Offers Received"
-    >
+    <Section id="offers" eyebrow="Recognition" title="Offers Received">
       <motion.div
         variants={stagger}
         initial="hidden"
@@ -79,14 +76,21 @@ export default function Offers() {
           <motion.div
             key={offer.company}
             variants={item}
-            className="card card-hover flex items-start justify-between gap-4 p-6"
+            whileHover={{ y: -6, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 320, damping: 22 }}
+            className={`card card-hover flex items-start justify-between gap-4 p-6 ${
+              offer.accepted ? "shadow-glow" : ""
+            }`}
           >
             <div className="min-w-0">
-              <h3 className="text-base font-semibold text-white leading-snug">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-slate-500">
+                {offer.logo}
+              </p>
+              <h3 className="mt-1 text-base font-semibold leading-snug text-[#f8fafc]">
                 {offer.company}
               </h3>
-              <p className="mt-1 text-sm text-zinc-300">{offer.role}</p>
-              <p className="mt-2 text-xs text-zinc-500">{offer.location}</p>
+              <p className="mt-1 text-sm text-slate-300">{offer.role}</p>
+              <p className="mt-2 text-xs text-slate-500">{offer.location}</p>
             </div>
             <div className="flex flex-col items-end gap-2">
               <VerifiedBadge />

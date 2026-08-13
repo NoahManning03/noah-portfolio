@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS } from "../data/portfolio";
 import { useActiveSection } from "../hooks/useActiveSection";
 import { useScrolled } from "../hooks/useScrolled";
+import { useLenisScroll } from "../hooks/useLenis";
 
 const NAV_IDS = NAV_LINKS.map((l) => l.id);
 
@@ -10,21 +11,26 @@ export default function Navbar() {
   const scrolled = useScrolled(12);
   const active = useActiveSection(NAV_IDS);
   const [open, setOpen] = useState(false);
+  const lenisRef = useLenisScroll();
 
   const handleNavClick = (e, id) => {
     e.preventDefault();
     const el = document.getElementById(id);
-    if (el) {
+    if (!el) return;
+    const lenis = lenisRef?.current;
+    if (lenis) {
+      lenis.scrollTo(el, { offset: -72 });
+    } else {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-      setOpen(false);
     }
+    setOpen(false);
   };
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-bg-border/80 bg-bg/70 backdrop-blur-xl"
+          ? "border-b border-slate-800/80 bg-[#111622]/70 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -34,7 +40,7 @@ export default function Navbar() {
           onClick={(e) => handleNavClick(e, "hero")}
           className="group flex items-center gap-2 text-sm font-semibold tracking-tightish text-white"
         >
-          <span className="grid h-7 w-7 place-items-center rounded-md border border-bg-border bg-bg-soft text-accent transition-colors group-hover:border-accent/50">
+          <span className="grid h-7 w-7 place-items-center rounded-md border border-slate-800/80 bg-[#111622]/80 text-accent shadow-glass transition-colors group-hover:border-accent/50 group-hover:shadow-glow">
             N
           </span>
           <span>Noah Manning</span>
@@ -61,7 +67,7 @@ export default function Navbar() {
           aria-label="Toggle navigation"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-bg-border bg-bg-soft text-zinc-300 hover:text-white"
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-800/80 bg-[#111622]/70 text-slate-300 backdrop-blur-xl hover:text-white"
         >
           <span className="sr-only">Toggle menu</span>
           <svg
@@ -90,7 +96,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden border-t border-bg-border bg-bg/90 backdrop-blur-xl"
+            className="md:hidden overflow-hidden border-t border-slate-800/80 bg-[#111622]/90 backdrop-blur-xl"
           >
             <div className="container-page flex flex-col gap-1 py-4">
               {NAV_LINKS.map((link) => {
@@ -103,7 +109,7 @@ export default function Navbar() {
                     className={`rounded-md px-3 py-2 text-sm transition-colors ${
                       isActive
                         ? "bg-accent-soft text-white"
-                        : "text-zinc-400 hover:bg-bg-soft hover:text-white"
+                        : "text-slate-400 hover:bg-[#111622] hover:text-white"
                     }`}
                   >
                     {link.label}

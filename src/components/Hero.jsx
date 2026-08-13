@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { HERO } from "../data/portfolio";
+import { useIsMobile, useIsTouch } from "../hooks/useMediaQuery";
+import { useLenisScroll } from "../hooks/useLenis";
 import headshotImg from "../assets/headshot.jpg";
+import MagneticButton from "./MagneticButton";
 
-function useTypewriter(text, speed = 45, startDelay = 350) {
+const HeroCanvas = lazy(() => import("./canvas/HeroCanvas"));
+
+function useTypewriter(text, speed = 38, startDelay = 700) {
   const [output, setOutput] = useState("");
   const [done, setDone] = useState(false);
 
@@ -31,22 +36,30 @@ function useTypewriter(text, speed = 45, startDelay = 350) {
 }
 
 const fade = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 22 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 },
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.35 + i * 0.12 },
   }),
 };
 
 export default function Hero() {
   const { output, done } = useTypewriter(HERO.typingPhrase);
+  const isMobile = useIsMobile();
+  const isTouch = useIsTouch();
+  const lenisRef = useLenisScroll();
 
-  const scrollTo = (id) => (e) => {
-    e.preventDefault();
-    document
-      .getElementById(id)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const handleScrollTo = (event, id) => {
+    event.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const lenis = lenisRef?.current;
+    if (lenis) {
+      lenis.scrollTo(el, { offset: -72 });
+    } else {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   return (
@@ -54,48 +67,44 @@ export default function Hero() {
       id="hero"
       className="relative flex min-h-screen items-center overflow-hidden pt-20"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(800px 500px at 15% 10%, rgba(47, 129, 247, 0.08), transparent 60%), radial-gradient(700px 400px at 90% 30%, rgba(47, 129, 247, 0.05), transparent 60%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-          maskImage:
-            "radial-gradient(ellipse at 50% 30%, black 40%, transparent 75%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse at 50% 30%, black 40%, transparent 75%)",
-        }}
-      />
-
-      <div className="container-page grid lg:grid-cols-2 gap-12 items-center w-full">
+      <div className="container-page grid w-full items-center gap-12 lg:grid-cols-2">
         <div>
-          <motion.p
+          <motion.div
             custom={0}
             variants={fade}
             initial="hidden"
             animate="visible"
-            className="section-eyebrow"
+            className="relative inline-flex max-w-full"
           >
-            Portfolio
-          </motion.p>
+            <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-blue-500/50 bg-200% animate-gradient-x" />
+            <div className="relative flex items-center gap-3 rounded-2xl bg-[#111622]/75 px-4 py-2 backdrop-blur-xl">
+              <img
+                src={headshotImg}
+                alt="Noah Manning"
+                className="h-9 w-9 rounded-full object-cover ring-1 ring-accent/50"
+              />
+              <p className="section-eyebrow !tracking-[0.16em]">Portfolio</p>
+            </div>
+          </motion.div>
 
           <motion.h1
             custom={1}
             variants={fade}
             initial="hidden"
             animate="visible"
-            className="mt-6 text-5xl font-bold tracking-tightish text-white sm:text-6xl md:text-7xl lg:text-7xl"
+            className="mt-6 text-5xl font-bold tracking-tightish text-[#f8fafc] sm:text-6xl md:text-7xl"
           >
-            {HERO.name}
+            {HERO.name.split("").map((letter, index) => (
+              <motion.span
+                key={`${letter}-${index}`}
+                initial={{ y: 40, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.45 + index * 0.04, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block"
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </motion.span>
+            ))}
           </motion.h1>
 
           <motion.div
@@ -103,13 +112,13 @@ export default function Hero() {
             variants={fade}
             initial="hidden"
             animate="visible"
-            className="mt-6 min-h-[2.25rem] text-lg sm:text-xl md:text-2xl text-zinc-300"
+            className="mt-6 min-h-[2.25rem] text-lg text-slate-300 sm:text-xl md:text-2xl"
           >
             <span>{output}</span>
             <span
               aria-hidden
-              className={`ml-1 inline-block w-[2px] translate-y-[2px] bg-accent ${
-                done ? "h-5 sm:h-6" : "h-5 sm:h-6 animate-blink-caret"
+              className={`ml-1 inline-block h-5 w-[2px] translate-y-[2px] bg-accent sm:h-6 ${
+                done ? "" : "animate-blink-caret"
               }`}
               style={{ animation: "blink 1s step-end infinite" }}
             />
@@ -120,7 +129,7 @@ export default function Hero() {
             variants={fade}
             initial="hidden"
             animate="visible"
-            className="mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-zinc-400"
+            className="mt-8 max-w-2xl text-base leading-relaxed text-muted sm:text-lg"
           >
             {HERO.paragraph}
           </motion.p>
@@ -132,9 +141,9 @@ export default function Hero() {
             animate="visible"
             className="mt-10 flex flex-wrap items-center gap-3"
           >
-            <a
+            <MagneticButton
               href="#projects"
-              onClick={scrollTo("projects")}
+              onClick={(event) => handleScrollTo(event, "projects")}
               className="btn-primary"
             >
               View My Work
@@ -153,41 +162,43 @@ export default function Hero() {
                   d="M5 12h14M13 5l7 7-7 7"
                 />
               </svg>
-            </a>
-            <a
+            </MagneticButton>
+            <MagneticButton
               href="#contact"
-              onClick={scrollTo("contact")}
+              onClick={(event) => handleScrollTo(event, "contact")}
               className="btn-secondary"
             >
               Contact Me
-            </a>
+            </MagneticButton>
           </motion.div>
         </div>
 
-        <motion.div
-          custom={2}
-          variants={fade}
-          initial="hidden"
-          animate="visible"
-          className="hidden lg:flex items-center justify-center"
-        >
-          <div className="relative">
-            <div className="absolute inset-0 rounded-2xl bg-accent/10 blur-3xl scale-110" />
-            <img
-              src={headshotImg}
-              alt="Noah Manning"
-              className="relative rounded-2xl w-80 xl:w-96 object-cover shadow-glow border border-bg-border"
-            />
-          </div>
-        </motion.div>
+        {!isMobile && (
+          <motion.div
+            custom={2}
+            variants={fade}
+            initial="hidden"
+            animate="visible"
+            className="relative hidden h-[420px] w-full lg:block xl:h-[500px]"
+          >
+            <div className="pointer-events-none absolute inset-10 animate-float rounded-full bg-accent/15 blur-3xl" />
+            <div className="pointer-events-none absolute inset-16 animate-spin-slow rounded-full border border-accent/20" />
+            <Suspense fallback={null}>
+              <HeroCanvas isTouch={isTouch} />
+            </Suspense>
+          </motion.div>
+        )}
       </div>
 
       <a
         href="#about"
-        onClick={scrollTo("about")}
+        onClick={(event) => handleScrollTo(event, "about")}
         aria-label="Scroll to About"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-zinc-500 transition-colors hover:text-zinc-300"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 transition-colors hover:text-slate-300"
       >
+        <span className="mb-2 block font-mono text-[10px] uppercase tracking-[0.2em]">
+          Scroll
+        </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"
@@ -196,7 +207,7 @@ export default function Hero() {
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth="1.5"
-          className="animate-bounce"
+          className="mx-auto animate-bounce"
         >
           <path
             strokeLinecap="round"
