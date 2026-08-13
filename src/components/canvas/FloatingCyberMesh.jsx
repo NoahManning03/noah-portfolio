@@ -75,7 +75,7 @@ export default function FloatingCyberMesh({ isTouch = false }) {
   }, [hologramMaterial]);
 
   useFrame((state, delta) => {
-    const targetScale = hovered ? 1.18 : 1;
+    const targetScale = hovered ? 1.06 : 0.9;
     scaleRef.current = THREE.MathUtils.lerp(scaleRef.current, targetScale, 0.08);
     hoverRef.current = THREE.MathUtils.lerp(hoverRef.current, hovered ? 1 : 0, 0.08);
 

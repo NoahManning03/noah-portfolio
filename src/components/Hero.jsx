@@ -65,9 +65,20 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center overflow-hidden pt-20"
+      className="relative flex min-h-screen items-center overflow-x-clip pt-20"
     >
-      <div className="container-page grid w-full items-center gap-12 lg:grid-cols-2">
+      {!isMobile && (
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[54vw] lg:block">
+          <div className="pointer-events-auto h-full w-full">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 animate-float rounded-full bg-accent/10 blur-3xl" />
+            <Suspense fallback={null}>
+              <HeroCanvas isTouch={isTouch} />
+            </Suspense>
+          </div>
+        </div>
+      )}
+
+      <div className="container-page relative z-10 grid w-full items-center gap-12 lg:grid-cols-2">
         <div>
           <motion.div
             custom={0}
@@ -77,11 +88,11 @@ export default function Hero() {
             className="relative inline-flex max-w-full"
           >
             <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-blue-500/50 bg-200% animate-gradient-x" />
-            <div className="relative flex items-center gap-3 rounded-2xl bg-[#111622]/75 px-4 py-2 backdrop-blur-xl">
+            <div className="relative flex items-center gap-4 rounded-2xl bg-[#111622]/75 px-4 py-3 backdrop-blur-xl">
               <img
                 src={headshotImg}
                 alt="Noah Manning"
-                className="h-9 w-9 rounded-full object-cover ring-1 ring-accent/50"
+                className="h-20 w-20 rounded-full object-cover object-top ring-2 ring-accent/50 sm:h-24 sm:w-24"
               />
               <p className="section-eyebrow !tracking-[0.16em]">Portfolio</p>
             </div>
@@ -173,21 +184,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {!isMobile && (
-          <motion.div
-            custom={2}
-            variants={fade}
-            initial="hidden"
-            animate="visible"
-            className="relative hidden h-[420px] w-full lg:block xl:h-[500px]"
-          >
-            <div className="pointer-events-none absolute inset-10 animate-float rounded-full bg-accent/15 blur-3xl" />
-            <div className="pointer-events-none absolute inset-16 animate-spin-slow rounded-full border border-accent/20" />
-            <Suspense fallback={null}>
-              <HeroCanvas isTouch={isTouch} />
-            </Suspense>
-          </motion.div>
-        )}
+        <div className="hidden lg:block" aria-hidden />
       </div>
 
       <a

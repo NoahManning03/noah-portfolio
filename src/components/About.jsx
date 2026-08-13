@@ -13,11 +13,14 @@ const stagger = {
 };
 
 const item = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 28, rotateY: 18, rotateX: 10, z: -80 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    rotateY: 0,
+    rotateX: 0,
+    z: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -81,7 +84,7 @@ function StatCard({ stat }) {
 export default function About() {
   return (
     <Section id="about" eyebrow="About" title="A bit about me">
-      <div className="grid gap-10 lg:grid-cols-5 lg:gap-16">
+      <div className="grid gap-10 lg:grid-cols-5 lg:gap-16" style={{ perspective: 1200 }}>
         <motion.div
           variants={item}
           initial="hidden"

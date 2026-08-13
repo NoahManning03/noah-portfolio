@@ -10,12 +10,14 @@ const stagger = {
 };
 
 const item = {
-  hidden: { opacity: 0, y: 14, rotateX: 12 },
+  hidden: { opacity: 0, y: 24, rotateY: -16, rotateX: 14, z: -90 },
   visible: {
     opacity: 1,
     y: 0,
+    rotateY: 0,
     rotateX: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    z: 0,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
   },
 };
 

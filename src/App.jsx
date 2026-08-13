@@ -13,6 +13,8 @@ import Atmosphere from "./components/Atmosphere";
 import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
 import BootSequence from "./components/BootSequence";
+import WorldColumn from "./components/WorldColumn";
+import EnvironmentField from "./components/EnvironmentField";
 import { HighlightProvider } from "./context/HighlightContext";
 
 const BackgroundCanvas = lazy(() => import("./components/canvas/BackgroundCanvas"));
@@ -28,17 +30,20 @@ export default function App() {
           <BackgroundCanvas />
         </Suspense>
         <Atmosphere />
+        <EnvironmentField />
         <SmoothScroll>
           <Navbar />
           <main className="relative z-10">
             <Hero />
-            <About />
-            <Skills />
-            <Experience />
-            <Projects />
-            <Offers />
-            <Certifications />
-            <Contact />
+            <WorldColumn>
+              <About />
+              <Skills />
+              <Experience />
+              <Projects />
+              <Offers />
+              <Certifications />
+              <Contact />
+            </WorldColumn>
           </main>
         </SmoothScroll>
       </div>

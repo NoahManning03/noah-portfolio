@@ -6,7 +6,8 @@ export default function HeroCanvas({ isTouch }) {
   return (
     <Canvas
       dpr={[1, 1.75]}
-      camera={{ position: [0, 0, 4.4], fov: 42 }}
+      camera={{ position: [0, 0, 6.4], fov: 36 }}
+      style={{ width: "100%", height: "100%", overflow: "visible" }}
       gl={{
         antialias: true,
         alpha: true,

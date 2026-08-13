@@ -129,6 +129,56 @@ html.lenis body {
     border-color: rgba(47, 129, 247, 0.55) !important;
   }
 
+  .world-stage {
+    perspective: 1600px;
+    perspective-origin: 50% 28%;
+    transform-style: preserve-3d;
+  }
+
+  .depth-section {
+    transform-style: preserve-3d;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .env-wall {
+    position: absolute;
+    top: -15%;
+    width: 26vw;
+    height: 140%;
+    opacity: 0.55;
+    background-image:
+      linear-gradient(to right, rgba(47, 129, 247, 0.16) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+  }
+
+  .env-wall-left {
+    left: -6%;
+    transform: perspective(900px) rotateY(62deg);
+  }
+
+  .env-wall-right {
+    right: -6%;
+    transform: perspective(900px) rotateY(-62deg);
+  }
+
+  .env-floor {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: -8%;
+    height: 28vh;
+    background-image:
+      linear-gradient(to right, rgba(47, 129, 247, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(47, 129, 247, 0.08) 1px, transparent 1px);
+    background-size: 64px 64px;
+    transform: perspective(700px) rotateX(68deg);
+    mask-image: linear-gradient(to top, transparent, black 40%, transparent);
+    opacity: 0.35;
+  }
+
   .scanlines {
     background: repeating-linear-gradient(
       to bottom,

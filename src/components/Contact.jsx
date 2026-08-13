@@ -1,14 +1,14 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { CONTACT } from "../data/portfolio";
 import MagneticButton from "./MagneticButton";
 import KineticTitle from "./KineticTitle";
 
 const fade = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 18, rotateX: 14 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
+    rotateX: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 },
   }),
 };
@@ -66,22 +66,11 @@ function GithubIcon() {
 }
 
 export default function Contact() {
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    const subject = encodeURIComponent(
-      name.trim() ? `Portfolio note from ${name.trim()}` : "Portfolio inquiry"
-    );
-    const body = encodeURIComponent(message.trim());
-    window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
-  };
-
   return (
     <section
       id="contact"
-      className="section scroll-mt-24 border-t border-slate-800/80"
+      data-depth-section
+      className="section depth-section scroll-mt-24 border-t border-slate-800/80"
     >
       <div className="container-page">
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
@@ -109,57 +98,15 @@ export default function Contact() {
             {CONTACT.blurb}
           </motion.p>
 
-          <motion.form
+          <motion.div
             custom={3}
             variants={fade}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            onSubmit={onSubmit}
-            className="card mt-10 w-full space-y-4 p-6 text-left sm:p-8"
-          >
-            <label className="block">
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">
-                Name
-              </span>
-              <input
-                type="text"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="mt-2 w-full rounded-md border border-slate-800/80 bg-[#0b0f17]/70 px-3 py-2.5 text-sm text-white outline-none ring-accent-ring transition focus:border-accent/50 focus:ring-2"
-                placeholder="Your name"
-              />
-            </label>
-            <label className="block">
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">
-                Message
-              </span>
-              <textarea
-                name="message"
-                rows={4}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="mt-2 w-full resize-none rounded-md border border-slate-800/80 bg-[#0b0f17]/70 px-3 py-2.5 text-sm text-white outline-none ring-accent-ring transition focus:border-accent/50 focus:ring-2"
-                placeholder="What are you building?"
-                required
-              />
-            </label>
-            <MagneticButton type="submit" className="btn-primary w-full sm:w-auto">
-              <MailIcon />
-              Send via email
-            </MagneticButton>
-          </motion.form>
-
-          <motion.div
-            custom={4}
-            variants={fade}
-            initial="hidden"
-            whileInView="visible"
             viewport={{ once: true, amount: 0.4 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-3"
+            className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
-            <MagneticButton href={`mailto:${CONTACT.email}`} className="btn-secondary">
+            <MagneticButton href={`mailto:${CONTACT.email}`} className="btn-primary">
               <MailIcon />
               {CONTACT.email}
             </MagneticButton>

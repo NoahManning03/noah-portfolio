@@ -10,7 +10,11 @@ export default function Section({
   className = "",
 }) {
   return (
-    <section id={id} className={`section scroll-mt-24 ${className}`}>
+    <section
+      id={id}
+      data-depth-section
+      className={`section depth-section scroll-mt-24 ${className}`}
+    >
       <div className="container-page">
         {(eyebrow || title) && (
           <div className="mb-12 max-w-3xl">
