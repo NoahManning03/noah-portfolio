@@ -16,15 +16,13 @@ const stagger = {
 };
 
 const item = {
-  hidden: { opacity: 0, y: 40, rotateY: 20, rotateX: 12, z: -120, scale: 0.94 },
+  hidden: { opacity: 1, y: 24, rotateY: 8, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
     rotateY: 0,
-    rotateX: 0,
-    z: 0,
     scale: 1,
-    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -93,7 +91,7 @@ export default function Projects() {
         variants={stagger}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.08 }}
+        viewport={{ once: true, amount: 0.05, margin: "80px 0px" }}
         className="grid gap-6 md:grid-cols-2"
         style={{ perspective: 1200 }}
       >

@@ -15,44 +15,25 @@ export default function WorldColumn({ children }) {
     const sections = root.current.querySelectorAll("[data-depth-section]");
     const ctx = gsap.context(() => {
       sections.forEach((el, index) => {
-        const yaw = index % 2 === 0 ? 16 : -16;
-        gsap.set(el, { transformPerspective: 1400, transformOrigin: "50% 18%" });
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: el,
-              start: "top 92%",
-              end: "bottom top",
-              scrub: 0.75,
-            },
-          })
-          .fromTo(
-            el,
-            {
-              rotateX: 18,
-              rotateY: yaw,
-              z: -260,
-              y: 70,
-              opacity: 0.18,
-            },
-            {
-              rotateX: 0,
-              rotateY: 0,
-              z: 0,
-              y: 0,
-              opacity: 1,
-              ease: "none",
-              duration: 0.38,
-            }
-          )
-          .to(el, {
-            rotateX: -12,
-            rotateY: yaw * -0.35,
-            z: -140,
-            opacity: 0.55,
-            ease: "none",
-            duration: 0.32,
-          });
+        const yaw = index % 2 === 0 ? 7 : -7;
+        gsap.set(el, {
+          transformPerspective: 1400,
+          transformOrigin: "50% 12%",
+          opacity: 1,
+        });
+        gsap.from(el, {
+          y: 36,
+          rotateX: 6,
+          rotateY: yaw,
+          duration: 0.7,
+          ease: "power3.out",
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            once: true,
+          },
+        });
       });
     }, root);
 

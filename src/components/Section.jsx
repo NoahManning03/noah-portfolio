@@ -20,9 +20,9 @@ export default function Section({
           <div className="mb-12 max-w-3xl">
             {eyebrow && (
               <motion.p
-                initial={{ opacity: 0, x: -16 }}
+                initial={{ opacity: 1, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
                 className="section-eyebrow"
               >
                 {eyebrow}
@@ -31,9 +31,9 @@ export default function Section({
             {title && <KineticTitle text={title} />}
             {description && (
               <motion.p
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 1, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: 0.15 }}
                 className="mt-4 leading-relaxed text-muted"
               >

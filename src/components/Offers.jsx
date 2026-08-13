@@ -8,14 +8,13 @@ const stagger = {
 };
 
 const item = {
-  hidden: { opacity: 0, y: 26, rotateY: 16, z: -70, scale: 0.96 },
+  hidden: { opacity: 1, y: 18, rotateY: 8, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
     rotateY: 0,
-    z: 0,
     scale: 1,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
   },
 };
 

@@ -8,12 +8,12 @@ export default function KineticTitle({ text, className = "" }) {
       {letters.map((letter, index) => (
         <motion.span
           key={`${letter}-${index}`}
-          initial={{ y: "0.7em", opacity: 0, rotateX: 70 }}
-          whileInView={{ y: 0, opacity: 1, rotateX: 0 }}
-          viewport={{ once: true, amount: 0.7 }}
+          initial={{ y: 12, opacity: 1 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{
-            duration: 0.55,
-            delay: index * 0.028,
+            duration: 0.4,
+            delay: index * 0.018,
             ease: [0.22, 1, 0.36, 1],
           }}
           className="inline-block origin-bottom"

@@ -34,15 +34,14 @@ export default function Experience() {
 
       cards.forEach((card) => {
         gsap.from(card, {
-          opacity: 0,
-          x: -36,
-          rotateY: 8,
-          duration: 0.75,
+          x: -24,
+          duration: 0.6,
           ease: "power3.out",
+          immediateRender: false,
           scrollTrigger: {
             trigger: card,
-            start: "top 82%",
-            toggleActions: "play none none reverse",
+            start: "top 92%",
+            once: true,
           },
         });
 
@@ -100,7 +99,7 @@ export default function Experience() {
                 {job.bullets.map((b) => (
                   <li
                     key={b}
-                    className="relative pl-5 text-sm leading-relaxed text-slate-300"
+                    className="relative pl-5 text-sm leading-relaxed text-slate-100"
                   >
                     <span
                       aria-hidden

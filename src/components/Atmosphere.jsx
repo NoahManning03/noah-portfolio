@@ -20,7 +20,7 @@ export default function Atmosphere() {
     <>
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-[1] bg-gradient-to-b from-[#0b0f17]/45 via-transparent to-[#0b0f17]/80"
+        className="pointer-events-none fixed inset-0 z-[1] bg-[#0b0f17]/55"
       />
       <div
         aria-hidden
