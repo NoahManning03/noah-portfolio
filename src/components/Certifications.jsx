@@ -8,11 +8,12 @@ const stagger = {
 };
 
 const item = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 1, y: 16, rotateY: -8 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    rotateY: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -50,21 +51,23 @@ export default function Certifications() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
         className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        style={{ perspective: 1100 }}
       >
         {CERTIFICATIONS.map((cert) => (
           <motion.div
             key={cert.name}
             variants={item}
-            className="card card-hover flex items-start gap-4 p-5"
+            whileHover={{ y: -6, rotate: -0.4 }}
+            className="card card-hover group flex items-start gap-4 p-5 hover:shadow-glow"
           >
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-bg-border bg-bg-soft text-accent">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-slate-800/80 bg-[#111622] text-accent transition-colors group-hover:border-accent/40 group-hover:text-violet-cyber">
               <CertIcon />
             </span>
             <div className="min-w-0">
-              <h3 className="text-sm font-semibold text-white leading-snug">
+              <h3 className="text-sm font-semibold leading-snug text-[#f8fafc]">
                 {cert.name}
               </h3>
-              <p className="mt-1 text-xs text-zinc-400">{cert.issuer}</p>
+              <p className="mt-1 text-xs text-muted">{cert.issuer}</p>
               <a
                 href="https://www.credly.com/users/noah-manning.2975d7d4"
                 target="_blank"
@@ -91,7 +94,7 @@ export default function Certifications() {
                 </svg>
                 Credly
               </a>
-              <p className="mt-2 text-xs text-zinc-500">{cert.date}</p>
+              <p className="mt-2 font-mono text-xs text-slate-500">{cert.date}</p>
             </div>
           </motion.div>
         ))}

@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 import { CONTACT } from "../data/portfolio";
+import MagneticButton from "./MagneticButton";
+import KineticTitle from "./KineticTitle";
 
 const fade = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 1, y: 14 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 },
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.06 },
   }),
 };
 
@@ -66,7 +68,8 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="section scroll-mt-24 border-t border-bg-border"
+      data-depth-section
+      className="section depth-section scroll-mt-24 border-t border-slate-800/80"
     >
       <div className="container-page">
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
@@ -81,16 +84,7 @@ export default function Contact() {
             Contact
           </motion.p>
 
-          <motion.h2
-            custom={1}
-            variants={fade}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-            className="section-title mt-3"
-          >
-            Get in touch
-          </motion.h2>
+          <KineticTitle text="Get in touch" />
 
           <motion.p
             custom={2}
@@ -98,7 +92,7 @@ export default function Contact() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.4 }}
-            className="mt-4 text-zinc-400 text-base sm:text-lg"
+            className="mt-4 text-base text-muted sm:text-lg"
           >
             {CONTACT.blurb}
           </motion.p>
@@ -111,11 +105,11 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.4 }}
             className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
-            <a href={`mailto:${CONTACT.email}`} className="btn-primary">
+            <MagneticButton href={`mailto:${CONTACT.email}`} className="btn-primary">
               <MailIcon />
               {CONTACT.email}
-            </a>
-            <a
+            </MagneticButton>
+            <MagneticButton
               href={CONTACT.linkedin}
               target="_blank"
               rel="noreferrer noopener"
@@ -123,8 +117,8 @@ export default function Contact() {
             >
               <LinkedInIcon />
               LinkedIn
-            </a>
-            <a
+            </MagneticButton>
+            <MagneticButton
               href={CONTACT.github}
               target="_blank"
               rel="noreferrer noopener"
@@ -132,13 +126,13 @@ export default function Contact() {
             >
               <GithubIcon />
               GitHub
-            </a>
+            </MagneticButton>
           </motion.div>
         </div>
 
-        <div className="mt-24 border-t border-bg-border pt-8 text-center text-xs text-zinc-500">
-          © {new Date().getFullYear()} Noah Manning. Built with React,
-          Tailwind, and Framer Motion.
+        <div className="mt-24 border-t border-slate-800/80 pt-8 text-center text-xs text-slate-500">
+          © {new Date().getFullYear()} Noah Manning. Built with React, Three.js,
+          GSAP, and Framer Motion.
         </div>
       </div>
     </section>

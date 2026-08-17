@@ -1,13 +1,5 @@
 import { motion } from "framer-motion";
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import KineticTitle from "./KineticTitle";
 
 export default function Section({
   id,
@@ -18,29 +10,39 @@ export default function Section({
   className = "",
 }) {
   return (
-    <section id={id} className={`section scroll-mt-24 ${className}`}>
+    <section
+      id={id}
+      data-depth-section
+      className={`section depth-section scroll-mt-24 ${className}`}
+    >
       <div className="container-page">
-        <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {(eyebrow || title) && (
-            <div className="mb-12 max-w-2xl">
-              {eyebrow && <p className="section-eyebrow">{eyebrow}</p>}
-              {title && (
-                <h2 className="section-title mt-3">{title}</h2>
-              )}
-              {description && (
-                <p className="mt-4 text-zinc-400 leading-relaxed">
-                  {description}
-                </p>
-              )}
-            </div>
-          )}
-          {children}
-        </motion.div>
+        {(eyebrow || title) && (
+          <div className="mb-12 max-w-3xl">
+            {eyebrow && (
+              <motion.p
+                initial={{ opacity: 1, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                className="section-eyebrow"
+              >
+                {eyebrow}
+              </motion.p>
+            )}
+            {title && <KineticTitle text={title} />}
+            {description && (
+              <motion.p
+                initial={{ opacity: 1, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: 0.15 }}
+                className="mt-4 leading-relaxed text-muted"
+              >
+                {description}
+              </motion.p>
+            )}
+          </div>
+        )}
+        {children}
       </div>
     </section>
   );
