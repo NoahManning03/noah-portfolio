@@ -210,6 +210,29 @@ export const PROJECTS = [
     ],
   },
   {
+    name: "Family Arcade",
+    tagline: "Real-Time Multiplayer Party Game Platform",
+    stack: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Upstash Redis",
+      "Vercel",
+    ],
+    meta: "Solo Developer · 2026 · Live · 10 Game Modes",
+    link: "https://family-arcade-mocha.vercel.app",
+    bullets: [
+      "Built a Jackbox-style party platform for up to 12 concurrent players — one screen on the TV, everyone else joining from their phone by QR code, with no accounts and no app — spanning 10 game modes and 2,650 questions, prompts, and puzzles.",
+      "Delivered sub-second liveness without websockets on a free serverless tier: the server holds all state and advances the round clock lazily on read, so polling clients stay in sync with no background workers to keep alive, and rounds end early the instant everyone has answered.",
+      "Designed a pluggable GameModule interface over a generic stage machine so an eleventh mode ships as one module file, one view file, and one catalog entry — and centralized scoring in the engine, where modules return only base points, so no single game can break the scoreboard.",
+      "Guarded Redis room state with a short SET NX PX mutex so two phones submitting in the same instant can't clobber each other, with graceful degradation to in-memory state for local development.",
+      "Kept unrevealed answers, the Fibbage truth, the drawing word, and the Faker's identity server-side and out of the client payload — the game can't be won by opening dev tools.",
+      "Solved for the living room: a measure-then-transform AutoFit component scales the host screen so a 12-player scoreboard fits beside the content on a TV nobody can scroll, and a lastSeen heartbeat detects a face-down phone so one AFK player doesn't stall every round for its full clock.",
+      "Wrote a 5-suite harness running against the production Redis path — an API simulation independently recomputing scoring across 221 checks, a Playwright suite failing on overflow or overlap at TV and phone sizes, a 40-combination matrix playing every mode at 1/2/3/6/12 players, an edge-case audit, and a validator over all 2,650 content items — which caught scoring imbalance and desync bugs before release.",
+    ],
+  },
+  {
     name: "Nut In My Bolts",
     tagline: "3D Nut-Sort Puzzle Game",
     stack: [
