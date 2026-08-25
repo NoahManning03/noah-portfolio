@@ -92,7 +92,7 @@ export default function Hero() {
               <img
                 src={headshotImg}
                 alt="Noah Manning"
-                className="h-20 w-20 rounded-full object-cover object-top ring-2 ring-accent/50 sm:h-24 sm:w-24"
+                className="h-32 w-32 rounded-full object-cover object-top ring-2 ring-accent/50 sm:h-40 sm:w-40 md:h-48 md:w-48"
               />
               <p className="section-eyebrow !tracking-[0.16em]">Portfolio</p>
             </div>
@@ -105,17 +105,33 @@ export default function Hero() {
             animate="visible"
             className="mt-6 text-5xl font-bold tracking-tightish text-[#f8fafc] sm:text-6xl md:text-7xl"
           >
-            {HERO.name.split("").map((letter, index) => (
-              <motion.span
-                key={`${letter}-${index}`}
-                initial={{ y: 40, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.45 + index * 0.04, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-block"
-              >
-                {letter === " " ? "\u00A0" : letter}
-              </motion.span>
-            ))}
+            {HERO.name.split(" ").map((word, wordIndex, words) => {
+              const offset = words
+                .slice(0, wordIndex)
+                .reduce((total, previous) => total + previous.length + 1, 0);
+              return (
+                <span key={`${word}-${wordIndex}`}>
+                  <span className="inline-block whitespace-nowrap">
+                    {word.split("").map((letter, letterIndex) => (
+                      <motion.span
+                        key={`${letter}-${letterIndex}`}
+                        initial={{ y: 40, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{
+                          delay: 0.45 + (offset + letterIndex) * 0.04,
+                          duration: 0.55,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="inline-block"
+                      >
+                        {letter}
+                      </motion.span>
+                    ))}
+                  </span>
+                  {wordIndex < words.length - 1 ? " " : null}
+                </span>
+              );
+            })}
           </motion.h1>
 
           <motion.div
