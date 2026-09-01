@@ -256,6 +256,33 @@ export const PROJECTS = [
     ],
   },
   {
+    name: "Price Guess",
+    tagline: "Guess-the-Price Game on Real Sourced Data",
+    stack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind v4",
+      "next/og",
+      "Playwright",
+      "Wikidata SPARQL",
+      "Vercel",
+    ],
+    meta: "Solo Developer \u00B7 2026 \u00B7 Live \u00B7 7 Game Modes",
+    link: "https://guessy-pricey.vercel.app",
+    bullets: [
+      "Built a GeoGuessr-style pricing game across 10,392 real, sourced prices in ten categories - LEGO retail, Steam list prices, film budgets, auction hammer prices, megaproject construction costs, spacecraft programme costs - spanning seven modes: five-round Classic, Marathon, sudden-death Streak, timed Blitz, two-card Duel, four-card Sort, and a date-seeded Daily everyone shares.",
+      "Held one rule above the feature list: no price is ever estimated. A source without a real figure produces no round, every price is native USD rather than FX-converted at play time, and Zillow and Redfin were ruled out entirely - both forbid automated access and license their photos from agents. The categories that exist are the ones that survived that rule.",
+      "Took a typed numeric input over a slider on purpose: any slider has to declare its bounds, and bounds leak the answer. Scored on the ratio between guess and truth through an exponential decay, which keeps a 2x miss meaningfully different from a 50x one across five orders of magnitude of price.",
+      "Pre-baked the whole dataset to static JSON committed to the repo - no runtime API calls, no database, no keys in production - and pinned the dataset into the serverless trace, without which production silently serves a ten-round dev sample while every test still passes.",
+      "Collected under an egress allowlist that blocked every vendor API: routed Wikidata SPARQL and MediaWiki through the operator's own browser, pulled the rest from GitHub-hosted open datasets, and moved bulk captures back by file transfer rather than fighting the network.",
+      "Measured a 60% dead-image rate and didn't believe it - eighteen parallel loads were being throttled, and throttling is indistinguishable from a 404. Re-ran at concurrency six with retries: zero dead. The 140 genuinely dead images that remained went into a committed denylist rather than a rerun-dependent filter.",
+      "Chased an image bug that only reproduced in production: img.complete can read true before a fetch begins, so the load listener was never attached and the frame stayed empty. Removed JavaScript from the visibility path entirely, then rewrote the regression test after confirming the first version passed against the broken build.",
+      "Made party games work with no server state - an eight-character base-33 code with a checksum packs mode, category, and seed, so everyone who enters it deterministically reconstructs the identical round order from the same committed dataset.",
+      "Treated phones as the target, not the fallback: a Playwright audit across four viewports took 36 sub-44px tap targets to zero, landscape phones lay the image beside the controls instead of a letterbox strip, and the e2e suite fails the build on a tap-target regression, horizontal overflow, or an og:image that goes relative or 404s.",
+    ],
+  },
+  {
     name: "Family Arcade",
     tagline: "Real-Time Multiplayer Party Game Platform",
     stack: [
