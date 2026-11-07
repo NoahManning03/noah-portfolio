@@ -358,6 +358,27 @@ export const PROJECTS = [
     ],
   },
   {
+    name: "My Integrity",
+    tagline: "Daily Reflection and Accountability",
+    stack: [
+      "Swift",
+      "SwiftUI",
+      "iOS",
+      "iPadOS",
+      "macOS",
+      "visionOS",
+    ],
+    meta: "Solo Developer · 2025-2026 · Live on App Store",
+    link: "https://apps.apple.com/us/app/my-integrity/id6756158648",
+    bullets: [
+      "Shipped a free daily reflection and accountability app across iPhone, iPad, Mac and Apple Vision Pro, built around the HALT framework - hungry, angry, lonely, tired - so a vulnerable moment is caught early rather than after the fact.",
+      "Built real-time accountability partner notifications: a trusted partner is alerted when the user starts a HALT check or completes a daily check-in, framed to encourage rather than shame.",
+      "Added a private profile in 1.0.2 showing recent reflections, check-ins and consistency over time, with usage analytics deliberately built without scores or rankings.",
+      "Kept it free with no accounts, no paywalls and no ads, and collecting no data at all - the App Store privacy label reports zero data collected.",
+      "Shipped three releases from 1.0 in December 2025 through 1.0.2, in 16 MB, supporting iOS and iPadOS 18.5, macOS 15.5 on Apple Silicon, and visionOS 2.5.",
+    ],
+  },
+  {
     name: "Wroc",
     tagline: "Offline Map for Your Own Land",
     stack: [
