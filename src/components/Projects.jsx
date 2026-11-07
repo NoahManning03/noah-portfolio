@@ -1,10 +1,4 @@
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import Section from "./Section";
 import { PROJECTS } from "../data/portfolio";
 import { useHighlight } from "../context/HighlightContext";
@@ -16,29 +10,13 @@ const stagger = {
 };
 
 const item = {
-  hidden: { opacity: 1, y: 24, rotateY: 8, scale: 0.98 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    rotateY: 0,
-    scale: 1,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-  },
+  hidden: { opacity: 1 },
+  visible: { opacity: 1 },
 };
 
 function TiltCard({ children, highlighted, disabled }) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-120, 120], [14, -14]), {
-    stiffness: 220,
-    damping: 22,
-  });
-  const rotateY = useSpring(useTransform(x, [-120, 120], [-14, 14]), {
-    stiffness: 220,
-    damping: 22,
-  });
   const shine = useMotionTemplate`radial-gradient(360px circle at ${mouseX}px ${mouseY}px, rgba(47,129,247,0.22), rgba(168,85,247,0.08) 28%, transparent 48%)`;
 
   const onMove = (event) => {
@@ -48,13 +26,11 @@ function TiltCard({ children, highlighted, disabled }) {
     const py = event.clientY - rect.top;
     mouseX.set(px);
     mouseY.set(py);
-    x.set(px - rect.width / 2);
-    y.set(py - rect.height / 2);
   };
 
   const onLeave = () => {
-    x.set(0);
-    y.set(0);
+    mouseX.set(-9999);
+    mouseY.set(-9999);
   };
 
   return (
@@ -62,11 +38,6 @@ function TiltCard({ children, highlighted, disabled }) {
       variants={item}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      style={{
-        rotateX: disabled ? 0 : rotateX,
-        rotateY: disabled ? 0 : rotateY,
-        transformStyle: "preserve-3d",
-      }}
       className={`card card-hover relative flex flex-col overflow-hidden p-7 ${
         highlighted ? "project-pulse" : ""
       }`}
@@ -93,7 +64,6 @@ export default function Projects() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.05, margin: "80px 0px" }}
         className="grid gap-6 md:grid-cols-2"
-        style={{ perspective: 1200 }}
       >
         {PROJECTS.map((p) => (
           <TiltCard
